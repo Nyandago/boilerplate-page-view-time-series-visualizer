@@ -28,7 +28,21 @@ def draw_line_plot():
 
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
-    df_bar = None
+    df_bar = df.copy()
+
+    df_bar["Years"] = df_bar.index.year
+    df_bar["Months"] = df_bar.index.month_name()
+    df_bar = pd.DataFrame(df_bar.groupby(["Years", "Months"], sort=False)["value"].mean().round().astype(int))
+    df_bar = df_bar.rename(columns={"value": "Average Page Views"})
+    df_bar = df_bar.reset_index()
+    missing_data = {
+        "Years": [2016, 2016, 2016, 2016],
+        "Months": ['January', 'February', 'March', 'April'],
+        "Average Page Views": [0, 0, 0, 0]
+    }
+
+    df_bar = pd.concat([pd.DataFrame(missing_data), df_bar])
+
 
     # Draw bar plot
 
