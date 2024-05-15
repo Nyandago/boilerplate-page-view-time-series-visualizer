@@ -78,10 +78,6 @@ def draw_box_plot():
     axes[1].set_xlabel("Month")
     axes[1].set_ylabel("Page Views")
 
-
-
-
-
     # Save image and return fig (don't change this part)
     fig.savefig('box_plot.png')
     return fig
