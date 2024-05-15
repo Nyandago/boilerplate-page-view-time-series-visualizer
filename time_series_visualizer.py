@@ -45,10 +45,11 @@ def draw_bar_plot():
 
 
     # Draw bar plot
+    fig, ax = plt.subplots(figsize=(19.2, 10.8), dpi=100)
+    ax.set_title("Daily freeCodeCamp Forum Average Page Views per Month")
 
-
-
-
+    chart = sns.barplot(data=df_bar, x="Years", y="Average Page Views", hue="Months", palette="tab10")
+    chart.set_xticklabels(chart.get_xticklabels(), rotation=90, horizontalalignment='center')
 
     # Save image and return fig (don't change this part)
     fig.savefig('bar_plot.png')
